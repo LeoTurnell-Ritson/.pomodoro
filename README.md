@@ -29,6 +29,8 @@ Advantages,
 
 - synchronised and simultaneous across all open shells.
 
+- very simple and customisable bash script
+
 ## Getting Started
 
    ```sh
