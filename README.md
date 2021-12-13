@@ -25,7 +25,7 @@ and the cycle repeats.
 
 Advantages,
 
-- WORK/PLAY indicator bar is constantly present every time the user hits enter,
+- WORK/PLAY indicator bar is constantly present updating every time the user hits enter,
 
 - synchronised and simultaneous across all open shells,
 
