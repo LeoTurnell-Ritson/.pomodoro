@@ -7,7 +7,7 @@
 
 ## About The Project
 
-Pomodoro is a shell script wich adds a pomodoro style timer to the shell prompt, for example
+Pomodoro is a shell script wich adds a [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
 ```sh
 user@home:~/.pomodoro$ 
 ```
@@ -15,7 +15,7 @@ becomes
 ```sh
 WORK [||||||----]:user@home:~/.pomodoro$
 ```
-then after a specified work period has passed and the  work bar has filled 
+then after a specified work period has passed and the work bar has filled 
 ```sh
 PLAY [|---------]:user@home:~/.pomodoro$
 ```
