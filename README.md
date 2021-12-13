@@ -27,9 +27,9 @@ Advantages,
 
 - WORK/PLAY indicator bar is constantly present every time the user hits enter,
 
-- synchronised and simultaneous across all open shells.
+- synchronised and simultaneous across all open shells,
 
-- very simple and customisable bash script
+- very simple and customisable bash script.
 
 ## Getting Started
 
