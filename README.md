@@ -43,7 +43,6 @@ Advantages,
    or (recommended) add the following lines to your .bashrc file
 
    ```sh
-   \#pomodoro
    if [ -f ~/.pomodoro/init.sh ]; then
        . ~/.pomodoro/init.sh
    fi
