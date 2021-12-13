@@ -72,3 +72,5 @@ For more information just type
 ```sh
 pomodoro
 ```
+
+Enjoy!
