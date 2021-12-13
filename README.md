@@ -7,7 +7,7 @@
 
 ## About The Project
 
-Pomodoro is a shell script wich adds a [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
+Pomodoro is a shell script wich adds a dynamic [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
 ```sh
 user@home:~/.pomodoro$ 
 ```
@@ -63,15 +63,15 @@ to join a session from another (separate) shell
 ```sh
 pomodoro -j
 ```
-to end a session
+and to end a session
 
 ```sh
 pomodoro -e
 ```
 
-note that ending a session in one shell will end the session in all open shells.
+Note that ending a session in one shell will end the session in all open shells.
 
-For more information just type
+For more information and how to change WORK/PLAY duration, just type 
 
 ```sh
 pomodoro
