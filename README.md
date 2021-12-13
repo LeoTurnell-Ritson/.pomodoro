@@ -23,8 +23,6 @@ and the cycle repeats.
 
 ### Why?
 
-Advantages,
-
 - WORK/PLAY indicator bar is constantly present updating every time the user hits enter,
 
 - synchronised and simultaneous across all open shells,
