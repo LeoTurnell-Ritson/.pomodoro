@@ -1,7 +1,7 @@
 <h1 align="center">pomodoro</h1>
 
 <p align="center">
-  bash shell pomodoro prompt
+  bash shell pomodoro timer prompt
   </p>
 </div>
 
