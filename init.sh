@@ -67,12 +67,20 @@ function pomodoro() {
     elif [ "$1" = "-d" ] || [ "$1" = "--display" ]; then
         if [ -f "$SESSION_FILE" ]; then
             . "$SESSION_FILE"
-            echo "SESSION_START=$SESSION_START"
-            echo "CYCLE_START=$CYCLE_START"
-            echo "WORK=$WORK"
-            echo "PLAY=$PLAY"
-            POMO_NOW=$(date +"%s")
-            echo "NOW=$POMO_NOW"
+            let CYCLE_END="(CYCLE_START + WORK + PLAY)"
+            SESSION_START="$(date -d @${SESSION_START} +"%d-%m-%Y %T")"
+            CYCLE_START="$(date -d @${CYCLE_START} +"%d-%m-%Y %T")"
+            CYCLE_END="$(date -d @${CYCLE_END} +"%d-%m-%Y %T")"
+            NOW="$(date +"%d-%m-%Y %T")"
+            WORK="$(date -d @${WORK} -u +"           %T")"
+            PLAY="$(date -d @${PLAY} -u +"           %T")"
+
+            echo "SESSION START  $SESSION_START"
+            echo "CYCLE START    $CYCLE_START"
+            echo "CYCLE END      $CYCLE_END"
+            echo "NOW            $NOW"
+            echo "WORK           $WORK"
+            echo "PLAY           $PLAY"
         else
             echo "pomodoro: error: no current session file $SESSION_FILE"
         fi
