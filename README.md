@@ -37,6 +37,7 @@ and the cycle repeats.
    then
       
    ```sh
+   export SESSION_FILE="$HOME/.pomodoro/session"
    . ~/.pomodoro/init.sh
    ```
 
