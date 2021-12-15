@@ -9,15 +9,15 @@
 
 Pomodoro is a shell script wich adds a dynamic [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
 ```sh
-user@home:~/.pomodoro$ 
+user@home:~/pomodoro$ 
 ```
 becomes
 ```sh
-WORK [||||||----]:user@home:~/.pomodoro$
+WORK [||||||----]:user@home:~/pomodoro$
 ```
 then after a specified work period has passed and the work bar has filled 
 ```sh
-PLAY [|---------]:user@home:~/.pomodoro$
+PLAY [|---------]:user@home:~/pomodoro$
 ```
 and the cycle repeats. 
 
@@ -32,22 +32,21 @@ and the cycle repeats.
 ## Getting Started
 
    ```sh
-   mkdir .pomodoro
-   cd .pomodoro
    git clone https://github.com/LeoTurnell-Ritson/pomodoro.git
    ```
    then
       
    ```sh
-   souce init.sh
+   . ~/pomodoro/init.sh
    ```
 
    or (recommended) add the following lines to your .bashrc file
 
    ```sh
-   if [ -f ~/.pomodoro/init.sh ]; then
-       . ~/.pomodoro/init.sh
-   fi
+        if [ -f ~/pomodoro/init.sh ]; then
+           SESSION_FILE="$HOME/pomodoro/session"
+           . ~/pomodoro/init.sh
+        fi
    ```
    
 ### Running pomodoro

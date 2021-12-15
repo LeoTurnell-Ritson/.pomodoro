@@ -2,7 +2,6 @@ PROMPT_COMMAND=prompter
 ORG_PS1=$PS1
 let POMO_WORK="25*60"
 let POMO_PLAY="5*60"
-SESSION_FILE="/home/llnt890/.pomodoro/session.sh"
 
 function prompter() {
     if [ -f "$SESSION_FILE" ] && [ "$POMO" = true ];
@@ -10,6 +9,7 @@ function prompter() {
         export PS1="$(_pomo):$ORG_PS1"
     else
         PS1=$ORG_PS1
+        POMO=false
     fi
 }
 
@@ -84,6 +84,12 @@ function pomodoro() {
         else
             echo "pomodoro: error: no current session file $SESSION_FILE"
         fi
+    elif [ "$1" = "-i" ] || [ "$1" = "--info" ] ; then
+        if [ -f "$SESSION_FILE"  ]; then
+            _pomo_info
+        else
+            echo "pomodoro: error: no current session file $SESSION_FILE"
+        fi
     else
         echo "Usage: pomodoro [-n | -j | -e | -d | -w WORK | -p PLAY]"
         echo ""
@@ -94,7 +100,12 @@ function pomodoro() {
         echo " -d, --display      display the current session information"
         echo " -w, --work WORK    set new work length in seconds"
         echo " -p, --play PLAY    set new play length in seconds"
+        echo " -i, --info         display productivity information about the current session"
     fi
+}
+
+function _pomo_info() {
+    echo "pomodoro: error: not implanted"
 }
 
 function _pomo() {
