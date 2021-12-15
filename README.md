@@ -1,4 +1,4 @@
-<h1 align="center">pomodoro</h1>
+%<h1 align="center">.pomodoro</h1>
 
 <p align="center">
   bash shell pomodoro timer prompt
@@ -7,17 +7,17 @@
 
 ## About The Project
 
-Pomodoro is a shell script wich adds a dynamic [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
+.Pomodoro is a shell script wich adds a dynamic [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) style timer to the shell prompt, for example
 ```sh
-user@home:~/pomodoro$ 
+user@home:~/.pomodoro$ 
 ```
 becomes
 ```sh
-WORK [||||||----]:user@home:~/pomodoro$
+WORK [||||||----]:user@home:~/.pomodoro$
 ```
 then after a specified work period has passed and the work bar has filled 
 ```sh
-PLAY [|---------]:user@home:~/pomodoro$
+PLAY [|---------]:user@home:~/.pomodoro$
 ```
 and the cycle repeats. 
 
@@ -32,24 +32,24 @@ and the cycle repeats.
 ## Getting Started
 
    ```sh
-   git clone https://github.com/LeoTurnell-Ritson/pomodoro.git
+   git clone https://github.com/LeoTurnell-Ritson/.pomodoro.git
    ```
    then
       
    ```sh
-   . ~/pomodoro/init.sh
+   . ~/.pomodoro/init.sh
    ```
 
    or (recommended) add the following lines to your .bashrc file
 
    ```sh
-        if [ -f ~/pomodoro/init.sh ]; then
-           SESSION_FILE="$HOME/pomodoro/session"
-           . ~/pomodoro/init.sh
+        if [ -f ~/.pomodoro/init.sh ]; then
+           SESSION_FILE="$HOME/.pomodoro/session"
+           . ~/.pomodoro/init.sh
         fi
    ```
    
-### Running pomodoro
+### Running .pomodoro
 
 To begin a new session
 
