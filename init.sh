@@ -1,14 +1,12 @@
-PROMPT_COMMAND=prompter
-ORG_PS1=$PS1
+PROMPT_COMMAND="prompter;$PROMPT_COMMAND"
 let POMO_WORK="25*60"
 let POMO_PLAY="5*60"
 
 function prompter() {
     if [ -f "$SESSION_FILE" ] && [ "$POMO" = true ];
     then
-        export PS1="$(_pomo):$ORG_PS1"
+        echo -n "$(_pomo):"
     else
-        PS1=$ORG_PS1
         POMO=false
     fi
 }
@@ -84,12 +82,6 @@ function pomodoro() {
         else
             echo "pomodoro: error: no current session file $SESSION_FILE"
         fi
-    elif [ "$1" = "-i" ] || [ "$1" = "--info" ] ; then
-        if [ -f "$SESSION_FILE"  ]; then
-            _pomo_info
-        else
-            echo "pomodoro: error: no current session file $SESSION_FILE"
-        fi
     else
         echo "Usage: pomodoro [-n | -j | -e | -d | -w WORK | -p PLAY]"
         echo ""
@@ -100,12 +92,7 @@ function pomodoro() {
         echo " -d, --display      display the current session information"
         echo " -w, --work WORK    set new work length in seconds"
         echo " -p, --play PLAY    set new play length in seconds"
-        echo " -i, --info         display productivity information about the current session"
     fi
-}
-
-function _pomo_info() {
-    echo "pomodoro: error: not implanted"
 }
 
 function _pomo() {
@@ -115,7 +102,7 @@ function _pomo() {
     POMO_CURRENT=$(expr $POMO_NOW - $CYCLE_START)
     if [ "$POMO_CURRENT" -lt "$WORK" ];
     then
-        printf "\[\033[01;31m\]WORK ["
+        printf "\033[01;31mWORK ["
         for i in {1..10};
         do
             let BLOCK="(WORK/10)*i";
@@ -126,10 +113,10 @@ function _pomo() {
                 printf "-"
             fi
         done
-        printf "]\[\033[00m\]"
+        printf "]\033[00m"
     elif [ "$POMO_CURRENT" -lt "$POMO_CYCLE" ];
     then
-        printf "\[\033[01;36m\]PLAY [";
+        printf "\033[01;36mPLAY [";
         for i in {1..10};
         do
             let BLOCK="((PLAY/10)*i)+WORK";
@@ -140,7 +127,7 @@ function _pomo() {
                 printf "-"
             fi
         done
-        printf "]\[\033[00m\]"
+        printf "]\033[00m"
     else
         CYCLE_START=$(expr $CYCLE_START + $POMO_CYCLE)
         rm "$SESSION_FILE"
@@ -149,6 +136,6 @@ function _pomo() {
         echo "CYCLE_START=$CYCLE_START" >> "$SESSION_FILE"
         echo "WORK=$WORK" >> "$SESSION_FILE"
         echo "PLAY=$PLAY" >> "$SESSION_FILE"
-        printf "\[\033[01;36m\]PLAY [||||||||||]\[\033[00m\]";
+        printf "\033[01;36m\]PLAY [||||||||||]\033[00m";
     fi
 }
