@@ -1,10 +1,9 @@
-PROMPT_COMMAND="prompter;$PROMPT_COMMAND"
+PROMPT_COMMAND="pomo_prompt;$PROMPT_COMMAND"
 let POMO_WORK="25*60"
 let POMO_PLAY="5*60"
 
-function prompter() {
-    if [ -f "$POMODORO_FILE" ] && [ "$POMO" = true ];
-    then
+function pomo_prompt() {
+    if [ -f "$POMODORO_FILE" ] && [ "$POMO" = true ]; then
         echo -n "$(_pomo):"
     else
         POMO=false
@@ -136,6 +135,6 @@ function _pomo() {
         echo "CYCLE_START=$CYCLE_START" >> "$POMODORO_FILE"
         echo "WORK=$WORK" >> "$POMODORO_FILE"
         echo "PLAY=$PLAY" >> "$POMODORO_FILE"
-        printf "\033[01;36m\]PLAY [||||||||||]\033[00m";
+        printf "\033[01;36mPLAY [||||||||||]\033[00m";
     fi
 }
