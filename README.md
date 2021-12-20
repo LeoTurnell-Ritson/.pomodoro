@@ -45,7 +45,7 @@ and the cycle repeats.
 
    ```sh
         if [ -f ~/.pomodoro/init.sh ]; then
-           SESSION_FILE="$HOME/.pomodoro/session"
+           POMODORO_FILE="$HOME/.pomodoro/session"
            . ~/.pomodoro/init.sh
         fi
    ```
