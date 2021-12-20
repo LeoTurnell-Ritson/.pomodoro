@@ -3,7 +3,7 @@ let POMO_WORK="25*60"
 let POMO_PLAY="5*60"
 
 function prompter() {
-    if [ -f "$SESSION_FILE" ] && [ "$POMO" = true ];
+    if [ -f "$POMODORO_FILE" ] && [ "$POMO" = true ];
     then
         echo -n "$(_pomo):"
     else
@@ -15,14 +15,14 @@ function pomodoro() {
     if [ "$1" = "-n" ] || [ "$1" = "--new" ]; then
         export POMO=true
         POMO_START=$(date +"%s")
-        rm -f "$SESSION_FILE"
-        touch "$SESSION_FILE"
-        echo "SESSION_START=$POMO_START" >> "$SESSION_FILE"
-        echo "CYCLE_START=$POMO_START" >> "$SESSION_FILE"
-        echo "WORK=$POMO_WORK" >> "$SESSION_FILE"
-        echo "PLAY=$POMO_PLAY" >> "$SESSION_FILE"
+        rm -f "$POMODORO_FILE"
+        touch "$POMODORO_FILE"
+        echo "SESSION_START=$POMO_START" >> "$POMODORO_FILE"
+        echo "CYCLE_START=$POMO_START" >> "$POMODORO_FILE"
+        echo "WORK=$POMO_WORK" >> "$POMODORO_FILE"
+        echo "PLAY=$POMO_PLAY" >> "$POMODORO_FILE"
     elif [ "$1" = "-j" ] || [ "$1" = "--join" ]; then
-        if [ -f "$SESSION_FILE" ]; then
+        if [ -f "$POMODORO_FILE" ]; then
             if [ "$POMO" = true ]; then
                 echo "pomodoro: warring: session already joined"
             else
@@ -33,38 +33,38 @@ function pomodoro() {
         fi
     elif [ "$1" = "-e" ] || [ "$1" = "--end" ]; then
         if [ "$POMO" = true ]; then
-            rm -f "$SESSION_FILE"
+            rm -f "$POMODORO_FILE"
             export POMO=false
         else
             echo "pomodoro: error: current session not open"
         fi
     elif [ "$1" = "-w" ] || [ "$1" = "--work" ]; then
-        if [ -f "$SESSION_FILE" ]; then
-            . "$SESSION_FILE"
-            rm "$SESSION_FILE"
-            touch "$SESSION_FILE"
-            echo "SESSION_START=$SESSION_START" >> "$SESSION_FILE"
-            echo "CYCLE_START=$CYCLE_START" >> "$SESSION_FILE"
-            echo "WORK=$2" >> "$SESSION_FILE"
-            echo "PLAY=$PLAY" >> "$SESSION_FILE"
+        if [ -f "$POMODORO_FILE" ]; then
+            . "$POMODORO_FILE"
+            rm "$POMODORO_FILE"
+            touch "$POMODORO_FILE"
+            echo "SESSION_START=$SESSION_START" >> "$POMODORO_FILE"
+            echo "CYCLE_START=$CYCLE_START" >> "$POMODORO_FILE"
+            echo "WORK=$2" >> "$POMODORO_FILE"
+            echo "PLAY=$PLAY" >> "$POMODORO_FILE"
         else
             echo "pomodoro: error: no current session file $SESSION_FILE"
         fi
     elif [ "$1" = "-p" ] || [ "$1" = "--play" ]; then
-        if [ -f "$SESSION_FILE" ]; then
-            . "$SESSION_FILE"
-            rm "$SESSION_FILE"
-            touch "$SESSION_FILE"
-            echo "SESSION_START=$SESSION_START" >> "$SESSION_FILE"
-            echo "CYCLE_START=$CYCLE_START" >> "$SESSION_FILE"
-            echo "WORK=$WORK" >> "$SESSION_FILE"
-            echo "PLAY=$2" >> "$SESSION_FILE"
+        if [ -f "$POMODORO_FILE" ]; then
+            . "$POMODORO_FILE"
+            rm "$POMODORO_FILE"
+            touch "$POMODORO_FILE"
+            echo "SESSION_START=$SESSION_START" >> "$POMODORO_FILE"
+            echo "CYCLE_START=$CYCLE_START" >> "$POMODORO_FILE"
+            echo "WORK=$WORK" >> "$POMODORO_FILE"
+            echo "PLAY=$2" >> "$POMODORO_FILE"
         else
             echo "pomodoro: error: no current session file $SESSION_FILE"
         fi
     elif [ "$1" = "-d" ] || [ "$1" = "--display" ]; then
-        if [ -f "$SESSION_FILE" ]; then
-            . "$SESSION_FILE"
+        if [ -f "$POMODORO_FILE" ]; then
+            . "$POMODORO_FILE"
             let CYCLE_END="(CYCLE_START + WORK + PLAY)"
             SESSION_START="$(date -d @${SESSION_START} +"%d-%m-%Y %T")"
             CYCLE_START="$(date -d @${CYCLE_START} +"%d-%m-%Y %T")"
@@ -96,7 +96,7 @@ function pomodoro() {
 }
 
 function _pomo() {
-    . "$SESSION_FILE"
+    . "$POMODORO_FILE"
     POMO_CYCLE=$(expr $WORK + $PLAY)
     POMO_NOW=$(date +"%s")
     POMO_CURRENT=$(expr $POMO_NOW - $CYCLE_START)
@@ -130,12 +130,12 @@ function _pomo() {
         printf "]\033[00m"
     else
         CYCLE_START=$(expr $CYCLE_START + $POMO_CYCLE)
-        rm "$SESSION_FILE"
-        touch "$SESSION_FILE"
-        echo "SESSION_START=$SESSION_START" >> "$SESSION_FILE"
-        echo "CYCLE_START=$CYCLE_START" >> "$SESSION_FILE"
-        echo "WORK=$WORK" >> "$SESSION_FILE"
-        echo "PLAY=$PLAY" >> "$SESSION_FILE"
+        rm "$POMODORO_FILE"
+        touch "$POMODORO_FILE"
+        echo "SESSION_START=$SESSION_START" >> "$POMODORO_FILE"
+        echo "CYCLE_START=$CYCLE_START" >> "$POMODORO_FILE"
+        echo "WORK=$WORK" >> "$POMODORO_FILE"
+        echo "PLAY=$PLAY" >> "$POMODORO_FILE"
         printf "\033[01;36m\]PLAY [||||||||||]\033[00m";
     fi
 }
